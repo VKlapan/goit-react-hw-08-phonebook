@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
+import { ContactListNavigation } from './ContactsListPage.styled';
 
 import * as contactsOperations from 'redux/contacts/contactsOperations';
 import * as contactsSelectors from 'redux/contacts/contactsSelectors';
+import AddContactForm from 'components/ContactForm/AddContactForm';
 
 const ContactsListPage = () => {
   const styleDefault = {
@@ -16,6 +18,8 @@ const ContactsListPage = () => {
     alignItems: 'center',
     fontSize: 20,
     color: '#010101',
+    width: 'auto',
+    padding: '20px',
   };
 
   const dispatch = useDispatch();
@@ -36,10 +40,10 @@ const ContactsListPage = () => {
 
   return (
     <div style={styleDefault}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
+      <ContactListNavigation>
+        <AddContactForm />
+        <Filter />
+      </ContactListNavigation>
       {isLoading && !error && <b>Request in progress...</b>}
       {error && <p>Oops, something went wrong. Error is: "{error}"</p>}
       {!isLoading && contacts.length > 0 && (

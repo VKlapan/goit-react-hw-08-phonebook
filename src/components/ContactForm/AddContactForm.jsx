@@ -52,16 +52,24 @@ export default function AddContactForm() {
     dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
+    handleClose();
   };
 
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        Add new Contact
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', mr: 1 }}>
+        <DialogContent
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            mr: 1,
+            alignItems: 'center',
+          }}
+        >
           <DialogContentText>
             To subscribe to this website, please enter your email address here.
             We will send updates occasionally.
@@ -74,6 +82,10 @@ export default function AddContactForm() {
             required
             value={name}
             onChange={handleChange}
+            placeholder="Enter name oc contact"
+            sx={{
+              width: '400px',
+            }}
           />
           <Input
             type="tel"
@@ -83,6 +95,10 @@ export default function AddContactForm() {
             required
             value={number}
             onChange={handleChange}
+            placeholder="Enter phone number of contact"
+            sx={{
+              width: '400px',
+            }}
           />
         </DialogContent>
         <DialogActions>
