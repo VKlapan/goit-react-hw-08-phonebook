@@ -4,7 +4,6 @@ import { React } from 'react';
 //import ContactItem from '../ContactItem/ContactItem';
 import ContactItemMUI from 'components/ContactItem/ContactItemMUI';
 import List from '@mui/material/List';
-import { ContactListBlock } from './ContactList.styled';
 
 const ContactList = ({ contacts }) => {
   return (

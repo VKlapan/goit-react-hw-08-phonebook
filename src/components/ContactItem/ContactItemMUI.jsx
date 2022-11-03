@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { ContactItemElement, ItemContent } from './ContactItem.styled';
 import { deleteContact } from 'redux/contacts/contactsOperations';
 
 import DeleteIcon from '@mui/icons-material/Delete';
