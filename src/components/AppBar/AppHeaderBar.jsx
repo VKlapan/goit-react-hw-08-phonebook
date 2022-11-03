@@ -15,9 +15,9 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 
 const pages = [
-  { name: 'Home', url: '/' },
-  { name: 'Contacts', url: '/contacts' },
-  { name: 'About', url: '/register' },
+  { name: 'Home', url: '/', private: false },
+  { name: 'Contacts', url: '/contacts', private: true },
+  { name: 'About', url: '/register', private: false },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -94,14 +94,17 @@ function AppHeaderBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map(page => (
-                <MenuItem
-                  key={page.name}
-                  onClick={() => handleCloseNavMenu(page.url)}
-                >
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))}
+              {pages.map(
+                page =>
+                  !page.private && (
+                    <MenuItem
+                      key={page.name}
+                      onClick={() => handleCloseNavMenu(page.url)}
+                    >
+                      <Typography textAlign="center">{page.name}</Typography>
+                    </MenuItem>
+                  )
+              )}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -124,15 +127,18 @@ function AppHeaderBar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map(page => (
-              <Button
-                key={page.name}
-                onClick={() => navigate(page.url)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page.name}
-              </Button>
-            ))}
+            {pages.map(
+              page =>
+                !page.private && (
+                  <Button
+                    key={page.name}
+                    onClick={() => navigate(page.url)}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                    {page.name}
+                  </Button>
+                )
+            )}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

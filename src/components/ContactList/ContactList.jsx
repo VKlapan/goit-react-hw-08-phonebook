@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import { React } from 'react';
 
-import ContactItem from '../ContactItem/ContactItem';
+//import ContactItem from '../ContactItem/ContactItem';
+import ContactItemMUI from 'components/ContactItem/ContactItemMUI';
+import List from '@mui/material/List';
 import { ContactListBlock } from './ContactList.styled';
 
 const ContactList = ({ contacts }) => {
   return (
-    <ContactListBlock>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {contacts.map(contact => (
-        <ContactItem key={contact.id} contact={contact} />
+        <ContactItemMUI key={contact.id} contact={contact} />
       ))}
-    </ContactListBlock>
+    </List>
   );
 };
 export default ContactList;

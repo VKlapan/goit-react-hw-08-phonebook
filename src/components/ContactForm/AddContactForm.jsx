@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,9 +9,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Input } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 
+import TextField from '@mui/material/TextField';
 import { getContacts } from 'redux/contacts/contactsSelectors';
 import { addContact } from 'redux/contacts/contactsOperations';
 
@@ -31,6 +33,7 @@ export default function AddContactForm() {
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
+
     switch (name) {
       case 'name':
         setName(value);
@@ -74,18 +77,13 @@ export default function AddContactForm() {
             To subscribe to this website, please enter your email address here.
             We will send updates occasionally.
           </DialogContentText>
-          <Input
-            type="text"
+          <TextField
+            label="Name"
             name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={name}
+            variant="filled"
+            placeholder="Enter contact name"
             onChange={handleChange}
-            placeholder="Enter name oc contact"
-            sx={{
-              width: '400px',
-            }}
+            required
           />
           <Input
             type="tel"

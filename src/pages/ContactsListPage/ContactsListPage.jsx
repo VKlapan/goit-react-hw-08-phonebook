@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
 import { ContactListNavigation } from './ContactsListPage.styled';

@@ -17,7 +17,6 @@ const ContactItem = ({ contact }) => {
           dispatch(deleteContact(id));
         }}
       >
-        {' '}
         DELETE
       </button>
     </ContactItemElement>
