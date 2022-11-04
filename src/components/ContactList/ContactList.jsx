@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import { React } from 'react';
 
 //import ContactItem from '../ContactItem/ContactItem';
-import ContactItemMUI from 'components/ContactItem/ContactItemMUI';
+import ContactItem from 'components/ContactItem/ContactItem';
 import List from '@mui/material/List';
 
 const ContactList = ({ contacts }) => {
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {contacts.map(contact => (
-        <ContactItemMUI key={contact.id} contact={contact} />
+        <ContactItem key={contact.id} contact={contact} />
       ))}
     </List>
   );
