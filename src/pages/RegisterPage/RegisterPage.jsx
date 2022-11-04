@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 
-import UserRegistrationForm from 'components/UserRegistrationForm';
+import UserRegistrationForm from 'components/UserRegisterForm/UserRegistrationForm';
 
 const RegisterPage = () => {
   return (
@@ -8,7 +8,6 @@ const RegisterPage = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        mr: 1,
         alignItems: 'center',
       }}
     >
