@@ -2,6 +2,7 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import Chip from '@mui/material/Chip';
 
 import IconButton from '@mui/material/IconButton';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
@@ -155,9 +156,12 @@ function AppHeaderBar() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {isLogged ? (
-                  <Avatar>
-                    <FaceIcon />
-                  </Avatar>
+                  <>
+                    <Chip label="User name" sx={{ mr: 1 }} />
+                    <Avatar>
+                      <FaceIcon />
+                    </Avatar>
+                  </>
                 ) : (
                   <Avatar>
                     <NoAccountsIcon />
