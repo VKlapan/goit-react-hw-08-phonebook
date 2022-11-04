@@ -2,7 +2,11 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+
 import IconButton from '@mui/material/IconButton';
+import NoAccountsIcon from '@mui/icons-material/NoAccounts';
+import FaceIcon from '@mui/icons-material/Face';
+
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -19,7 +23,12 @@ const pages = [
   { name: 'Contacts', url: '/contacts', private: false },
   { name: 'About', url: '/register', private: false },
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+  { name: 'Register', url: '/register', private: false },
+  { name: 'Login', url: '/login', private: false },
+];
+
+const isLogged = true;
 
 function AppHeaderBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,7 +47,8 @@ function AppHeaderBar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = url => {
+    navigate(url);
     setAnchorElUser(null);
   };
 
@@ -144,7 +154,15 @@ function AppHeaderBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                {isLogged ? (
+                  <Avatar>
+                    <FaceIcon />
+                  </Avatar>
+                ) : (
+                  <Avatar>
+                    <NoAccountsIcon />
+                  </Avatar>
+                )}
               </IconButton>
             </Tooltip>
             <Menu
@@ -164,8 +182,11 @@ function AppHeaderBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map(setting => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem
+                  key={setting.name}
+                  onClick={() => handleCloseUserMenu(setting.url)}
+                >
+                  <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
