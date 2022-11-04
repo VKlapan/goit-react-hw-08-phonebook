@@ -8,7 +8,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Input } from '@mui/material';
 
 import TextField from '@mui/material/TextField';
 import { getContacts } from 'redux/contacts/contactsSelectors';
@@ -64,7 +63,7 @@ export default function AddContactForm() {
         Add new Contact
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Add new contact</DialogTitle>
         <DialogContent
           sx={{
             display: 'flex',
@@ -74,29 +73,28 @@ export default function AddContactForm() {
           }}
         >
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            To add new contact to ypur phonebook, please enter contact's name
+            and phone number here. We will send updates occasionally.
           </DialogContentText>
           <TextField
             label="Name"
             name="name"
             variant="filled"
+            type="text"
             placeholder="Enter contact name"
             onChange={handleChange}
             required
+            fullWidth
           />
-          <Input
-            type="tel"
+          <TextField
+            label="Phone number"
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            value={number}
+            variant="filled"
+            type="tel"
+            placeholder="Enter contact phone number"
             onChange={handleChange}
-            placeholder="Enter phone number of contact"
-            sx={{
-              width: '400px',
-            }}
+            required
+            fullWidth
           />
         </DialogContent>
         <DialogActions>

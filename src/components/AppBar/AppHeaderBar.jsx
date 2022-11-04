@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 
 const pages = [
   { name: 'Home', url: '/', private: false },
-  { name: 'Contacts', url: '/contacts', private: true },
+  { name: 'Contacts', url: '/contacts', private: false },
   { name: 'About', url: '/register', private: false },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];

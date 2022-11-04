@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
@@ -43,7 +44,12 @@ const ContactsListPage = () => {
         <AddContactForm />
         <Filter />
       </ContactListNavigation>
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && (
+        <>
+          <CircularProgress /> <br />
+          <b>Request in progress...</b>
+        </>
+      )}
       {error && <p>Oops, something went wrong. Error is: "{error}"</p>}
       {!isLoading && contacts.length > 0 && (
         <ContactList contacts={visibleContacts} />
