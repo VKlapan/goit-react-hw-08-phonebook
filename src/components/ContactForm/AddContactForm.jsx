@@ -73,7 +73,7 @@ export default function AddContactForm() {
           }}
         >
           <DialogContentText>
-            To add new contact to ypur phonebook, please enter contact's name
+            To add new contact to your phonebook, please enter contact's name
             and phone number here. We will send updates occasionally.
           </DialogContentText>
           <TextField
