@@ -6,7 +6,6 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await api.addNewUser(newUser);
-      console.log('Response', response.data);
       api.setToken(response.data.token);
       return response.data;
     } catch (error) {
@@ -20,7 +19,6 @@ export const login = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const response = await api.loginUser(user);
-      console.log('Response', response.data);
       api.setToken(response.data.token);
       return response.data;
     } catch (error) {

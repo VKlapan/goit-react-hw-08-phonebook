@@ -47,12 +47,7 @@ export default function UserLoginForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // if (contacts.find(contact => contact.name === name)) {
-    //   alert(`${name} is already in contacts`);
-    //   return;
-    // }
     dispatch(login({ email, password }));
-    console.log({ email, password });
     setEmail('');
     setPassword('');
   };
