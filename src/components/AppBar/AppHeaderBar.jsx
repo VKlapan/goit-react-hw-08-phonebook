@@ -23,9 +23,9 @@ import * as authorizationSelectors from '../../redux/authorization/authorization
 import { logout } from 'redux/authorization/authorizationOperations';
 
 const pages = [
-  { name: 'Home', url: '/', private: false },
-  { name: 'Contacts', url: '/contacts', private: false },
-  { name: 'About', url: '/register', private: false },
+  { name: 'Home', url: '/', public: true },
+  { name: 'Contacts', url: '/contacts', public: false },
+  { name: 'About', url: '/about', public: true },
 ];
 const settings = [
   { name: 'Register', url: '/register', private: false },
@@ -117,7 +117,7 @@ function AppHeaderBar() {
             >
               {pages.map(
                 page =>
-                  !page.private && (
+                  (page.public || (!page.public && isLogged)) && (
                     <MenuItem
                       key={page.name}
                       onClick={() => handleCloseNavMenu(page.url)}
@@ -150,7 +150,7 @@ function AppHeaderBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(
               page =>
-                !page.private && (
+                (page.public || (!page.public && isLogged)) && (
                   <Button
                     key={page.name}
                     onClick={() => navigate(page.url)}

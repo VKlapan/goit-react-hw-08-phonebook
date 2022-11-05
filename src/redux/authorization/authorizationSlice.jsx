@@ -80,7 +80,6 @@ const authorizationSlice = createSlice({
       state.isLoading = false;
       state.isCheckingCurrent = false;
       state.error = action.payload;
-      Notify.failure(state.error);
     },
 
     // LOGOUT
