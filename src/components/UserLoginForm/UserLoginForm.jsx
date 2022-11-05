@@ -11,10 +11,15 @@ import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 
+import { useDispatch } from 'react-redux';
+
+import { login } from 'redux/authorization/authorizationOperations';
+
 export default function UserLoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -46,6 +51,7 @@ export default function UserLoginForm() {
     //   alert(`${name} is already in contacts`);
     //   return;
     // }
+    dispatch(login({ email, password }));
     console.log({ email, password });
     setEmail('');
     setPassword('');
@@ -95,7 +101,7 @@ export default function UserLoginForm() {
           }
         />
       </FormControl>
-      <Button onClick={handleSubmit}>Register</Button>
+      <Button onClick={handleSubmit}>Login</Button>
     </Box>
   );
 }

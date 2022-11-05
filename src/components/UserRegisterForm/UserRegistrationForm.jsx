@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -11,11 +10,18 @@ import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { register } from 'redux/authorization/authorizationOperations';
+
 export default function UserRegistrationForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -50,7 +56,7 @@ export default function UserRegistrationForm() {
     //   alert(`${name} is already in contacts`);
     //   return;
     // }
-    console.log({ name, email, password });
+    dispatch(register({ name, email, password }));
     setName('');
     setEmail('');
     setPassword('');

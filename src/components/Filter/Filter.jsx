@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { setFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/filter/filterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();

@@ -18,6 +18,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import * as authorizationSelectors from '../../redux/authorization/authorizationsSelectors';
+import { logout } from 'redux/authorization/authorizationOperations';
 
 const pages = [
   { name: 'Home', url: '/', private: false },
@@ -29,12 +32,13 @@ const settings = [
   { name: 'Login', url: '/login', private: false },
 ];
 
-const isLogged = true;
-
 function AppHeaderBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
+  const isLogged = useSelector(authorizationSelectors.getIsLogged);
+  const userName = useSelector(authorizationSelectors.getName);
+  const dispatch = useDispatch();
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
@@ -51,6 +55,11 @@ function AppHeaderBar() {
   const handleCloseUserMenu = url => {
     navigate(url);
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    setAnchorElUser(null);
+    dispatch(logout());
   };
 
   return (
@@ -157,7 +166,7 @@ function AppHeaderBar() {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {isLogged ? (
                   <>
-                    <Chip label="User name" sx={{ mr: 1 }} />
+                    <Chip label={userName} sx={{ mr: 1 }} />
                     <Avatar>
                       <FaceIcon />
                     </Avatar>
@@ -185,14 +194,20 @@ function AppHeaderBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map(setting => (
-                <MenuItem
-                  key={setting.name}
-                  onClick={() => handleCloseUserMenu(setting.url)}
-                >
-                  <Typography textAlign="center">{setting.name}</Typography>
+              {!isLogged &&
+                settings.map(setting => (
+                  <MenuItem
+                    key={setting.name}
+                    onClick={() => handleCloseUserMenu(setting.url)}
+                  >
+                    <Typography textAlign="center">{setting.name}</Typography>
+                  </MenuItem>
+                ))}
+              {isLogged && (
+                <MenuItem key="logout" onClick={handleLogout}>
+                  Logout
                 </MenuItem>
-              ))}
+              )}
             </Menu>
           </Box>
         </Toolbar>
