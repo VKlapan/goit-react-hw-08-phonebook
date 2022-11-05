@@ -60,6 +60,7 @@ function AppHeaderBar() {
   const handleLogout = () => {
     setAnchorElUser(null);
     dispatch(logout());
+    navigate('/');
   };
 
   return (

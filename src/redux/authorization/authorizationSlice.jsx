@@ -9,6 +9,7 @@ const authorizationInitialState = {
   token: '',
   isLoading: false,
   isLogged: false,
+  isCheckingCurrent: false,
   error: null,
 };
 
@@ -55,6 +56,29 @@ const authorizationSlice = createSlice({
     },
     [authorizationOperations.login.rejected](state, action) {
       state.isLoading = false;
+      state.error = action.payload;
+      Notify.failure(state.error);
+    },
+    // CURRENT
+
+    [authorizationOperations.checkCurrent.pending](state) {
+      state.isLoading = true;
+      state.isCheckingCurrent = true;
+      state.error = null;
+    },
+    [authorizationOperations.checkCurrent.fulfilled](state, { payload }) {
+      const { name, email } = payload;
+      state.isLoading = false;
+      state.isLogged = true;
+      state.error = null;
+      state.name = name;
+      state.email = email;
+      state.isCheckingCurrent = false;
+    },
+
+    [authorizationOperations.checkCurrent.rejected](state, action) {
+      state.isLoading = false;
+      state.isCheckingCurrent = false;
       state.error = action.payload;
       Notify.failure(state.error);
     },

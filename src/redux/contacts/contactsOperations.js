@@ -3,12 +3,14 @@ import * as api from 'servises/contactsApi';
 
 export const getContacts = createAsyncThunk(
   'contacts/getAll',
-  async (_, thunkAPI) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
+      const { authorization } = getState();
+      api.setToken(authorization.token);
       const response = await api.getAllContacts();
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );

@@ -23,6 +23,7 @@ const contactsSlice = createSlice({
     },
     [contactsOperations.getContacts.rejected](state, action) {
       state.isLoading = false;
+      state.items = [];
       state.error = action.payload;
       Notify.failure(state.error);
     },

@@ -32,6 +32,11 @@ export const logoutUser = async () => {
   return data;
 };
 
+export const getCurrentUser = async () => {
+  const data = await instance.get('/users/current');
+  return data;
+};
+
 export const getAllContacts = async () => {
   const data = await instance.get('/contacts');
   return data;

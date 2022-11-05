@@ -27,16 +27,30 @@ export const login = createAsyncThunk(
   }
 );
 
+export const checkCurrent = createAsyncThunk(
+  'authorization/current',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { authorization } = getState();
+      api.setToken(authorization.token);
+      const response = await api.getCurrentUser();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logout = createAsyncThunk(
   'authorization/logout',
-  async (user, thunkAPI) => {
+  async (_, { rejectWithValue }) => {
     try {
       const response = await api.logoutUser();
       console.log('Response', response.data);
       api.setToken('');
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
