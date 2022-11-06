@@ -48,13 +48,13 @@ function AppHeaderBar() {
   };
 
   const handleCloseNavMenu = url => {
-    navigate(url);
     setAnchorElNav(null);
+    navigate(url);
   };
 
   const handleCloseUserMenu = url => {
-    navigate(url);
     setAnchorElUser(null);
+    navigate(url);
   };
 
   const handleLogout = () => {
