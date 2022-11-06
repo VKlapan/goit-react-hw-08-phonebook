@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/643.07537b29.chunk.js","mappings":"kKAIA,UAJkB,WAChB,OAAO,sCACR,C","sources":["pages/AboutPage/AboutPage.jsx"],"sourcesContent":["const AboutPage = () => {\n  return <h2>ABOUT PAGE</h2>;\n};\n\nexport default AboutPage;\n"],"names":[],"sourceRoot":""}
