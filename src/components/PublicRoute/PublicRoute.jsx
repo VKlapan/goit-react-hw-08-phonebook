@@ -6,7 +6,6 @@ export default function PablicRoute() {
   const isLogged = useSelector(getIsLogged);
 
   if (isLogged) {
-    console.log('public', isLogged);
     return <Navigate to="/contacts" />;
   }
 
