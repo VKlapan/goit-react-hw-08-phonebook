@@ -6,7 +6,6 @@ export default function PrivateRoute() {
   const isLogged = useSelector(getIsLogged);
 
   if (!isLogged) {
-    console.log('privat', isLogged);
     return <Navigate to="/login" />;
   }
 
